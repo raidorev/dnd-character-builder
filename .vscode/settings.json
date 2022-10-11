@@ -1,0 +1,9 @@
+{
+  "npm.packageManager": "pnpm",
+  "eslint.workingDirectories": [
+    "apps/server",
+    "apps/web",
+    "packages/eslint-config-custom"
+  ],
+  "cSpell.words": ["pinia", "vuetify"]
+}

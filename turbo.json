@@ -1,0 +1,28 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false
+    }
+  },
+  "globalEnv": [
+    "NODE_ENV",
+    "PORT",
+    "DATABASE_HOST",
+    "DATABASE_PORT",
+    "DATABASE_USERNAME",
+    "DATABASE_PASSWORD",
+    "DATABASE_NAME",
+    "JWT_ACCESS_SECRET",
+    "JWT_REFRESH_SECRET",
+    "JWT_TOKEN_EXPIRES_IN",
+    "SALT_ROUNDS"
+  ]
+}
