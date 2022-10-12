@@ -8,6 +8,7 @@
   ],
   "type": "module",
   "scripts": {
+    "prepare": "turbo run prepare",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",

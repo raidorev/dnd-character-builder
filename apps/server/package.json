@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "license": "UNLICENSED",
   "scripts": {
+    "prepare": "prisma generate",
     "build": "rimraf dist && nest build",
     "dev": "nest start --watch",
     "docker:db": "docker-compose -f docker-compose.db.yml up -d",
