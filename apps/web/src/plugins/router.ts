@@ -4,7 +4,7 @@ const routes: RouterOptions['routes'] = [
   {
     path: '/',
     name: 'home',
-    component: () => import('../views/home-view.vue'),
+    component: () => import('../views/home.vue'),
   },
 ]
 
