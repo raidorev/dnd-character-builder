@@ -5,5 +5,6 @@
     "apps/web",
     "packages/eslint-config-custom"
   ],
-  "cSpell.words": ["pinia", "vuetify"]
+  "cSpell.words": ["pinia", "stylelint", "vuetify"],
+  "stylelint.validate": ["css", "less", "postcss", "vue"]
 }
