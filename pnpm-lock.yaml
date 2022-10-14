@@ -124,6 +124,7 @@ importers:
     specifiers:
       '@apollo/client': ^3.7.0
       '@mdi/font': 7.0.96
+      '@types/node': 18.8.0
       '@types/webfontloader': ^1.6.35
       '@typescript-eslint/eslint-plugin': ^5.39.0
       '@typescript-eslint/parser': ^5.39.0
@@ -162,6 +163,7 @@ importers:
       vuetify: 3.0.0-beta.13_vdkwhj2kz5kpysy3rwb432nm3y
       webfontloader: 1.6.28
     devDependencies:
+      '@types/node': 18.8.0
       '@types/webfontloader': 1.6.35
       '@typescript-eslint/eslint-plugin': 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
       '@typescript-eslint/parser': 5.40.0_z4bbprzjrhnsfa24uvmcbu7f5q
@@ -2926,6 +2928,13 @@ packages:
     resolution:
       {
         integrity: sha512-Y6S38pFr04yb13qqHf8uk1nHE3lXgQ30WZbv1mLliV9pt0NjvqdWttLcrOYLnXbOafknVYRHZGoMSpR9UwfYow==,
+      }
+    dev: true
+
+  /@types/node/18.8.0:
+    resolution:
+      {
+        integrity: sha512-u+h43R6U8xXDt2vzUaVP3VwjjLyOJk6uEciZS8OSyziUQGOwmk+l+4drxcsDboHXwyTaqS1INebghmWMRxq3LA==,
       }
     dev: true
 
