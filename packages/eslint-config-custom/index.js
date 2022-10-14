@@ -13,6 +13,17 @@ module.exports = {
 
   ignorePatterns: ['!.*', 'node_modules', 'dist', 'coverage'],
 
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
+  },
+
   rules: {
     'import/order': [
       'error',
@@ -62,16 +73,6 @@ module.exports = {
       parser: '@typescript-eslint/parser',
       parserOptions: {
         project: './tsconfig.eslint.json',
-      },
-      settings: {
-        'import/parsers': {
-          '@typescript-eslint/parser': ['.ts', '.tsx'],
-        },
-        'import/resolver': {
-          typescript: {
-            alwaysTryTypes: true,
-          },
-        },
       },
       extends: [
         'plugin:@typescript-eslint/recommended',
