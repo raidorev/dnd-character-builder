@@ -1,12 +1,12 @@
 import { createRouter, createWebHashHistory, RouterOptions } from 'vue-router'
 
-import { useAuth } from '../stores/auth'
+import { useAuth } from '@/stores/auth'
 
 const routes: RouterOptions['routes'] = [
   {
     path: '/',
     name: 'home',
-    component: () => import('../views/home.vue'),
+    component: () => import('@/views/home.vue'),
     meta: {
       requiresAuth: false,
     },
@@ -14,7 +14,7 @@ const routes: RouterOptions['routes'] = [
   {
     path: '/auth',
     name: 'auth',
-    component: () => import('../views/auth.vue'),
+    component: () => import('@/views/auth.vue'),
     meta: {
       requiresAuth: false,
     },
@@ -22,7 +22,7 @@ const routes: RouterOptions['routes'] = [
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
-    component: () => import('../views/not-found.vue'),
+    component: () => import('@/views/not-found.vue'),
     meta: {
       requiresAuth: false,
     },
