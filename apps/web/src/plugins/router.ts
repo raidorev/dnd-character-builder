@@ -37,7 +37,7 @@ export const router = createRouter({
 router.beforeEach((to) => {
   const auth = useAuth()
 
-  if (to.meta.requiresAuth && !auth.isLoggedIn) {
+  if (to.meta.requiresAuth && !auth.isSignedIn) {
     return {
       name: 'auth',
       query: { redirect: to.fullPath },
