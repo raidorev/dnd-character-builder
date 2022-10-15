@@ -12,6 +12,17 @@ export const enum SupportedLocale {
   ru = 'ru',
 }
 
+export const locales = [
+  {
+    locale: SupportedLocale.en,
+    name: 'English',
+  },
+  {
+    locale: SupportedLocale.ru,
+    name: 'Русский',
+  },
+]
+
 export const i18n = createI18n<[MessageSchema], `${SupportedLocale}`>({
   legacy: false,
   locale: SupportedLocale.en,
