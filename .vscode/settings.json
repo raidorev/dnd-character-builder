@@ -7,6 +7,12 @@
   ],
   "cSpell.words": ["pinia", "stylelint", "vuetify"],
   "stylelint.validate": ["css", "less", "postcss", "vue"],
+  "conventionalCommits.scopes": [
+    "server",
+    "web",
+    "eslint-config-custom",
+    "stylelint-config-custom"
+  ],
   "i18n-ally.localesPaths": [
     "apps/web/src/locales",
     "apps/web/src/plugins/i18n"
