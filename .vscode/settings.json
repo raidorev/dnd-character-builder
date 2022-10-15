@@ -6,5 +6,11 @@
     "packages/eslint-config-custom"
   ],
   "cSpell.words": ["pinia", "stylelint", "vuetify"],
-  "stylelint.validate": ["css", "less", "postcss", "vue"]
+  "stylelint.validate": ["css", "less", "postcss", "vue"],
+  "i18n-ally.localesPaths": [
+    "apps/web/src/locales",
+    "apps/web/src/plugins/i18n"
+  ],
+  "i18n-ally.enabledFrameworks": ["vue"],
+  "i18n-ally.keystyle": "nested"
 }
