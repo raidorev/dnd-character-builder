@@ -1,8 +1,6 @@
-import { createRouter, createWebHashHistory, RouterOptions } from 'vue-router'
+import { RouterOptions } from 'vue-router'
 
-import { useAuth } from '@/stores/auth'
-
-const routes: RouterOptions['routes'] = [
+export const routes: RouterOptions['routes'] = [
   {
     path: '/',
     name: 'home',
@@ -28,19 +26,3 @@ const routes: RouterOptions['routes'] = [
     },
   },
 ]
-
-export const router = createRouter({
-  history: createWebHashHistory(),
-  routes,
-})
-
-router.beforeEach((to) => {
-  const auth = useAuth()
-
-  if (to.meta.requiresAuth && !auth.isSignedIn) {
-    return {
-      name: 'auth',
-      query: { redirect: to.fullPath },
-    }
-  }
-})
