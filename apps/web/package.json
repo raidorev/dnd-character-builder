@@ -9,7 +9,8 @@
     "lint:eslint": "eslint \"**/*.{js,cjs,ts,vue}\" -f pretty",
     "lint:stylelint": "stylelint \"**/*.{css,scss,vue}\"",
     "start": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@apollo/client": "^3.7.0",
@@ -32,6 +33,7 @@
     "@typescript-eslint/parser": "^5.39.0",
     "@vitejs/plugin-vue": "^3.1.2",
     "@vitest/coverage-c8": "^0.24.3",
+    "@vitest/coverage-istanbul": "^0.24.3",
     "@vue/test-utils": "^2.1.0",
     "eslint-config-custom": "workspace:*",
     "jsdom": "^20.0.1",

@@ -15,6 +15,9 @@
     "test": {
       "outputs": []
     },
+    "test:coverage": {
+      "outputs": []
+    },
     "dev": {
       "cache": false
     }

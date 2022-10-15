@@ -132,6 +132,7 @@ importers:
       '@typescript-eslint/parser': ^5.39.0
       '@vitejs/plugin-vue': ^3.1.2
       '@vitest/coverage-c8': ^0.24.3
+      '@vitest/coverage-istanbul': ^0.24.3
       '@vue/apollo-composable': ^4.0.0-beta.1
       '@vue/test-utils': ^2.1.0
       eslint-config-custom: workspace:*
@@ -174,6 +175,7 @@ importers:
       '@typescript-eslint/parser': 5.40.0_z4bbprzjrhnsfa24uvmcbu7f5q
       '@vitejs/plugin-vue': 3.1.2_vite@3.1.7+vue@3.2.40
       '@vitest/coverage-c8': 0.24.3_jsdom@20.0.1+sass@1.55.0
+      '@vitest/coverage-istanbul': 0.24.3_jsdom@20.0.1+sass@1.55.0
       '@vue/test-utils': 2.1.0_vue@3.2.40
       eslint-config-custom: link:../../packages/eslint-config-custom
       jsdom: 20.0.1
@@ -3327,6 +3329,32 @@ packages:
       }
     dependencies:
       c8: 7.12.0
+      vitest: 0.24.3_jsdom@20.0.1+sass@1.55.0
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - happy-dom
+      - jsdom
+      - less
+      - sass
+      - stylus
+      - supports-color
+      - terser
+    dev: true
+
+  /@vitest/coverage-istanbul/0.24.3_jsdom@20.0.1+sass@1.55.0:
+    resolution:
+      {
+        integrity: sha512-cPQ5icP/TPih3qeZ29qA2zg1lxAM+wAUuh1ZkQJ75OK7am/8isqhP5QCCeGCLdFOakDsm4Ik8vHHfcDffuxW9Q==,
+      }
+    dependencies:
+      istanbul-lib-coverage: 3.2.0
+      istanbul-lib-instrument: 5.2.1
+      istanbul-lib-report: 3.0.0
+      istanbul-lib-source-maps: 4.0.1
+      istanbul-reports: 3.1.5
+      test-exclude: 6.0.0
       vitest: 0.24.3_jsdom@20.0.1+sass@1.55.0
     transitivePeerDependencies:
       - '@edge-runtime/vm'
