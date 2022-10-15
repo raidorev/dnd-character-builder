@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 // https://github.com/import-js/eslint-plugin-import/issues/1739
 // eslint-disable-next-line import/no-unresolved
-import Logo from '../../public/logo.svg?component'
+import Logo from '@/assets/logo.svg?component'
 
 withDefaults(defineProps<{ color: string }>(), {
   color: '#fff',
