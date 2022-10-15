@@ -2,30 +2,16 @@ import { createI18n } from 'vue-i18n'
 
 import en from '@/locales/en.json'
 import ru from '@/locales/ru.json'
+import { SupportedLocale } from '@/utils/i18n/locales'
+import { supportedPreferredLanguage } from '@/utils/i18n/preferred-language'
 
 import { ruPluralRule } from './plural-rules/ru'
 
 type MessageSchema = typeof en
 
-export const enum SupportedLocale {
-  en = 'en',
-  ru = 'ru',
-}
-
-export const locales = [
-  {
-    locale: SupportedLocale.en,
-    name: 'English',
-  },
-  {
-    locale: SupportedLocale.ru,
-    name: 'Русский',
-  },
-]
-
 export const i18n = createI18n<[MessageSchema], `${SupportedLocale}`>({
   legacy: false,
-  locale: SupportedLocale.en,
+  locale: supportedPreferredLanguage,
   fallbackLocale: SupportedLocale.en,
   pluralRules: {
     [SupportedLocale.ru]: ruPluralRule,

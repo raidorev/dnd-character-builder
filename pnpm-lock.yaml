@@ -135,6 +135,7 @@ importers:
       '@vitest/coverage-istanbul': ^0.24.3
       '@vue/apollo-composable': ^4.0.0-beta.1
       '@vue/test-utils': ^2.1.0
+      '@vueuse/core': ^9.3.0
       eslint-config-custom: workspace:*
       graphql: ^16.6.0
       graphql-tag: ^2.12.6
@@ -159,6 +160,7 @@ importers:
       '@apollo/client': 3.7.0_graphql@16.6.0
       '@mdi/font': 7.0.96
       '@vue/apollo-composable': 4.0.0-beta.1_e5gi4wltvndz74kc4zlv5cccru
+      '@vueuse/core': 9.3.0_vue@3.2.40
       graphql: 16.6.0
       graphql-tag: 2.12.6_graphql@16.6.0
       pinia: 2.0.23_bfjwoga25wxjazzogo7o372nwq
@@ -3130,6 +3132,13 @@ packages:
       '@types/superagent': 4.1.15
     dev: true
 
+  /@types/web-bluetooth/0.0.15:
+    resolution:
+      {
+        integrity: sha512-w7hEHXnPMEZ+4nGKl/KDRVpxkwYxYExuHOYXyzIzCDzEZ9ZCGMAewulr9IqJu2LR4N37fcnb1XVeuZ09qgOxhA==,
+      }
+    dev: false
+
   /@types/webfontloader/1.6.35:
     resolution:
       {
@@ -3581,6 +3590,40 @@ packages:
       upath: 2.0.1
       vue: 3.2.40
       vuetify: 3.0.0-beta.13_bg64iu3cvudkzmw2mru5n5x5nm
+
+  /@vueuse/core/9.3.0_vue@3.2.40:
+    resolution:
+      {
+        integrity: sha512-64Rna8IQDWpdrJxgitDg7yv1yTp41ZmvV8zlLEylK4QQLWAhz1OFGZDPZ8bU4lwcGgbEJ2sGi2jrdNh4LttUSQ==,
+      }
+    dependencies:
+      '@types/web-bluetooth': 0.0.15
+      '@vueuse/metadata': 9.3.0
+      '@vueuse/shared': 9.3.0_vue@3.2.40
+      vue-demi: 0.13.11_vue@3.2.40
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
+  /@vueuse/metadata/9.3.0:
+    resolution:
+      {
+        integrity: sha512-GnnfjbzIPJIh9ngL9s9oGU1+Hx/h5/KFqTfJykzh/1xjaHkedV9g0MASpdmPZIP+ynNhKAcEfA6g5i8KXwtoMA==,
+      }
+    dev: false
+
+  /@vueuse/shared/9.3.0_vue@3.2.40:
+    resolution:
+      {
+        integrity: sha512-caGUWLY0DpPC6l31KxeUy6vPVNA0yKxx81jFYLoMpyP6cF84FG5Dkf69DfSUqL57wX8JcUkJDMnQaQIZPWFEQQ==,
+      }
+    dependencies:
+      vue-demi: 0.13.11_vue@3.2.40
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
 
   /@webassemblyjs/ast/1.11.1:
     resolution:

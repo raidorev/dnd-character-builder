@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n'
 
-import { locales } from '@/plugins/i18n'
+import { usePersistanceLocale } from '@/composables/persistance-locale'
+import { locales } from '@/utils/i18n/locales'
 
-const { t, locale } = useI18n({ useScope: 'global' })
+const { t } = useI18n()
+const persistanceLocale = usePersistanceLocale()
 </script>
 
 <template>
@@ -21,7 +23,7 @@ const { t, locale } = useI18n({ useScope: 'global' })
       <v-list-item
         v-for="{ name, locale: l } in locales"
         :key="l"
-        @click="locale = l"
+        @click="persistanceLocale = l"
       >
         <v-list-item-title>{{ name }}</v-list-item-title>
       </v-list-item>
