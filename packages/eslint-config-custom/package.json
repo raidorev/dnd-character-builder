@@ -7,7 +7,6 @@
     "lint": "eslint . -f pretty"
   },
   "dependencies": {
-    "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-turbo": "latest",
     "eslint-import-resolver-typescript": "^3.5.1",

@@ -8,8 +8,8 @@
     "lint": "pnpm run lint:eslint && pnpm run lint:stylelint",
     "lint:eslint": "eslint \"**/*.{js,cjs,ts,vue}\" -f pretty",
     "lint:stylelint": "stylelint \"**/*.{css,scss,vue}\"",
-    "test": "vitest run",
-    "start": "vite preview"
+    "start": "vite preview",
+    "test": "vitest run"
   },
   "dependencies": {
     "@apollo/client": "^3.7.0",
@@ -33,6 +33,7 @@
     "@vitejs/plugin-vue": "^3.1.2",
     "@vitest/coverage-c8": "^0.24.3",
     "@vue/test-utils": "^2.1.0",
+    "eslint-config-custom": "workspace:*",
     "jsdom": "^20.0.1",
     "postcss-html": "^1.5.0",
     "sass": "^1.55.0",
