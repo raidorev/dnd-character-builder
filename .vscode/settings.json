@@ -11,7 +11,8 @@
     "server",
     "web",
     "eslint-config-custom",
-    "stylelint-config-custom"
+    "stylelint-config-custom",
+    "deps"
   ],
   "i18n-ally.localesPaths": [
     "apps/web/src/locales",
