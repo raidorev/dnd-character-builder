@@ -10,6 +10,7 @@
     "lint:stylelint": "stylelint \"**/*.{css,scss,vue}\"",
     "start": "vite preview",
     "test": "vitest run",
+    "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
