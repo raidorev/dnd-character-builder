@@ -15,10 +15,10 @@ export const apolloClient = new ApolloClient({
   cache,
   defaultOptions: {
     query: {
-      errorPolicy: 'all',
+      errorPolicy: import.meta.env.DEV ? 'all' : 'none',
     },
     mutate: {
-      errorPolicy: 'all',
+      errorPolicy: import.meta.env.DEV ? 'all' : 'none',
     },
   },
 })
