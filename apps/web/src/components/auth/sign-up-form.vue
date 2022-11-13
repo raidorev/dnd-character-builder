@@ -1,38 +1,90 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, minLength, sameAs } from '@vuelidate/validators'
+import { computed, reactive, unref } from 'vue'
 
-const email = ref('')
-const password = ref('')
-const passwordRepeat = ref('')
+import { useAuth } from '@/stores/auth'
 
-const signUp = () => {
-  console.log(email.value, password.value)
+const auth = useAuth()
+
+const state = reactive({
+  email: '',
+  password: '',
+  passwordConfirmation: '',
+})
+
+const rules = computed(() => ({
+  email: { required, email },
+  password: { required, minLength: minLength(8) },
+  passwordConfirmation: {
+    required,
+    sameAsPassword: sameAs(state.password),
+  },
+}))
+
+const $v = useVuelidate(rules, state)
+
+const createErrors = (filed: keyof typeof rules.value) =>
+  computed(() => {
+    if (!$v.value[filed].$dirty || !$v.value[filed].$error) return []
+
+    return $v.value[filed].$errors.map(({ $message }) => unref($message))
+  })
+
+const emailErrors = createErrors('email')
+const passwordErrors = createErrors('password')
+const passwordConfirmationErrors = createErrors('passwordConfirmation')
+
+const signUp = async () => {
+  const isValid = await $v.value.$validate()
+  if (!isValid) {
+    $v.value.$touch()
+    return
+  }
+  await auth.signUp(state)
 }
 </script>
 
 <template>
   <v-form class="mb-3" @submit.prevent="signUp">
-    <v-text-field v-model="email" label="Email" type="email" required />
+    <v-snackbar v-model="auth.hasError" color="error">
+      {{ auth.error }}
+
+      <template #actions>
+        <v-btn variant="text" @click="auth.clearError">Close</v-btn>
+      </template>
+    </v-snackbar>
+
     <v-text-field
-      v-model="password"
+      v-model="state.email"
+      label="Email"
+      type="email"
+      required
+      :error-messages="emailErrors"
+      @focus="$v.email.$touch()"
+      @blur="$v.email.$touch()"
+    />
+    <v-text-field
+      v-model="state.password"
       label="Password"
       type="password"
       required
+      :error-messages="passwordErrors"
+      @focus="$v.password.$touch()"
+      @blur="$v.password.$touch()"
     />
     <v-text-field
-      v-model="passwordRepeat"
-      label="Repeat password"
+      v-model="state.passwordConfirmation"
+      label="Confirm password"
       type="password"
       required
+      :error-messages="passwordConfirmationErrors"
+      @focus="$v.passwordConfirmation.$touch()"
+      @blur="$v.passwordConfirmation.$touch()"
     />
 
     <div class="text-center">
       <v-btn class="mb-3" type="submit" color="primary ">Sign Up</v-btn>
     </div>
-
-    <p class="text-subtitle-1 text-center">
-      Forgot your password?
-      <router-link to="/auth/forgot-password">Reset Password</router-link>
-    </p>
   </v-form>
 </template>
