@@ -36,6 +36,8 @@ const passwordErrors = createErrors('password')
 const passwordConfirmationErrors = createErrors('passwordConfirmation')
 
 const signUp = async () => {
+  auth.clearError()
+
   const isValid = await $v.value.$validate()
   if (!isValid) {
     $v.value.$touch()
