@@ -49,7 +49,7 @@ const signUp = async () => {
 
 <template>
   <v-form class="mb-3" @submit.prevent="signUp">
-    <v-snackbar v-model="auth.hasError" color="error">
+    <v-snackbar :model-value="auth.hasError" color="error">
       {{ auth.error }}
 
       <template #actions>
