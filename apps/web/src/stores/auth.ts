@@ -45,11 +45,17 @@ export const useAuth = defineStore('auth', () => {
     error.value = extractErrorMessage(apolloError)
   })
 
-  onDone((token) => {
+  onDone(({ errors, data }) => {
+    if (errors?.length && !data) {
+      error.value = errors[0].message
+      return
+    }
+
     clearError()
-    if (token.data) {
-      tokens.accessToken = token.data.signUp.accessToken
-      tokens.refreshToken = token.data.signUp.refreshToken
+
+    if (data) {
+      tokens.accessToken = data.signUp.accessToken
+      tokens.refreshToken = data.signUp.refreshToken
     }
   })
 
