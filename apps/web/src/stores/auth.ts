@@ -1,10 +1,10 @@
-import { provideApolloClient, useMutation } from '@vue/apollo-composable'
-import { gql } from 'graphql-tag'
+import { provideApolloClient } from '@vue/apollo-composable'
 import { defineStore } from 'pinia'
-import { computed, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 
+import { useSignUp } from '@/composables/auth/sign-up'
+import { useError } from '@/composables/error'
 import { apolloClient } from '@/plugins/apollo'
-import { extractErrorMessage } from '@/utils/graphql/error'
 
 export interface Token {
   accessToken: string
@@ -14,11 +14,7 @@ export interface Token {
 export const useAuth = defineStore('auth', () => {
   provideApolloClient(apolloClient)
 
-  const error = ref('')
-  const hasError = computed(() => error.value !== '')
-  const clearError = () => {
-    error.value = ''
-  }
+  const error = useError()
 
   // TODO
   const isSignedIn = ref(false)
@@ -28,36 +24,17 @@ export const useAuth = defineStore('auth', () => {
     refreshToken: '',
   })
 
-  const {
-    mutate: signUp,
-    onError,
-    onDone,
-  } = useMutation<{ signUp: Token }>(gql`
-    mutation SignUp($email: String!, $password: String!) {
-      signUp(input: { email: $email, password: $password }) {
-        accessToken
-        refreshToken
-      }
-    }
-  `)
+  const { signUp } = useSignUp(
+    (data) => {
+      error.clearError()
 
-  onError((apolloError) => {
-    error.value = extractErrorMessage(apolloError)
-  })
+      tokens.accessToken = data.accessToken
+      tokens.refreshToken = data.refreshToken
+    },
+    (message) => {
+      error.message.value = message
+    },
+  )
 
-  onDone(({ errors, data }) => {
-    if (errors?.length && !data) {
-      error.value = errors[0].message
-      return
-    }
-
-    clearError()
-
-    if (data) {
-      tokens.accessToken = data.signUp.accessToken
-      tokens.refreshToken = data.signUp.refreshToken
-    }
-  })
-
-  return { isSignedIn, signUp, error, hasError, clearError }
+  return { isSignedIn, signUp, error, tokens }
 })
