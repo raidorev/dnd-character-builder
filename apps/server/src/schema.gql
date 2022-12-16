@@ -15,7 +15,35 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Token {
+  """JWT access token"""
+  accessToken: JWT!
+
+  """JWT refresh token"""
+  refreshToken: JWT!
+}
+
+"""
+A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
+"""
+scalar JWT
+
 type Query {
   user(id: Int!): User!
   users: [User!]!
+}
+
+type Mutation {
+  signUp(input: SignupInput!): Token!
+  signIn(input: SignInInput!): Token!
+}
+
+input SignupInput {
+  email: String!
+  password: String!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
 }
