@@ -11,7 +11,7 @@ import { Config, SecurityConfig } from '@/common/config/configuration.interface'
 import { UsersService } from '@/users/users.service'
 
 import { SignInInput } from './dto/sign-in.input'
-import { SignupInput } from './dto/signup.input'
+import { SignUpInput } from './dto/sign-up.input'
 import { Token } from './models/token.model'
 import { PasswordService } from './password.service'
 
@@ -28,7 +28,7 @@ export class AuthService {
     return this.usersService.user({ id })
   }
 
-  public async signup(payload: SignupInput): Promise<Token> {
+  public async signUp(payload: SignUpInput): Promise<Token> {
     const password = await this.passwordService.hashPassword(payload.password)
 
     try {
