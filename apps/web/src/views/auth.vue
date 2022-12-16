@@ -14,10 +14,10 @@ const toggleSignUp = () => {
 
 <template>
   <v-row class="h-100" align="center" justify="center">
-    <v-col cols="12" sm="10" md="6" lg="6">
+    <v-col cols="12" sm="10" md="8" lg="6">
       <v-sheet rounded elevation="5">
         <v-row no-gutters>
-          <v-col cols="6" class="d-flex justify-center pa-3">
+          <v-col cols="12" md="6" class="d-flex justify-center pa-3">
             <div class="w-100">
               <div class="d-flex align-center justify-center">
                 <BaseLogo color="rgb(var(--v-theme-primary))" />
@@ -66,7 +66,7 @@ const toggleSignUp = () => {
               </div>
             </div>
           </v-col>
-          <v-col cols="6" class="d-none d-sm-block">
+          <v-col cols="6" class="d-none d-md-block">
             <v-img class="h-100" src="https://picsum.photos/1000" cover />
           </v-col>
         </v-row>
