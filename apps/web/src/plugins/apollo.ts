@@ -1,19 +1,30 @@
 import {
   ApolloClient,
-  createHttpLink,
+  ApolloLink,
+  concat,
+  HttpLink,
   InMemoryCache,
 } from '@apollo/client/core'
 import fetch from 'cross-fetch'
 
-const httpLink = createHttpLink({
-  uri: 'http://localhost:3000/graphql',
-  fetch,
+import { useAuth } from '@/stores/auth'
+
+const httpLink = new HttpLink({ uri: 'http://localhost:3000/graphql', fetch })
+const authMiddleware = new ApolloLink((operation, forward) => {
+  const auth = useAuth()
+  operation.setContext({
+    headers: {
+      authorization: auth.accessToken ? `Bearer ${auth.accessToken}` : '',
+    },
+  })
+
+  return forward(operation)
 })
 
 const cache = new InMemoryCache()
 
 export const apolloClient = new ApolloClient({
-  link: httpLink,
+  link: concat(authMiddleware, httpLink),
   cache,
   defaultOptions: {
     query: {
