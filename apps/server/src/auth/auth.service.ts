@@ -1,4 +1,8 @@
-import { ConflictException, Injectable } from '@nestjs/common'
+import {
+  ConflictException,
+  Injectable,
+  UnprocessableEntityException,
+} from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 import { Prisma, User } from '@prisma/client'
@@ -6,6 +10,7 @@ import { Prisma, User } from '@prisma/client'
 import { Config, SecurityConfig } from '@/common/config/configuration.interface'
 import { UsersService } from '@/users/users.service'
 
+import { SignInInput } from './dto/sign-in.input'
 import { SignupInput } from './dto/signup.input'
 import { Token } from './models/token.model'
 import { PasswordService } from './password.service'
@@ -43,6 +48,27 @@ export class AuthService {
 
       throw error
     }
+  }
+
+  public async signIn({ email, password }: SignInInput): Promise<Token> {
+    const user = await this.usersService.user({ email })
+
+    if (!user) {
+      throw new UnprocessableEntityException(
+        'User with this email does not exist',
+      )
+    }
+
+    const isPasswordValid = await this.passwordService.comparePassword(
+      password,
+      user.password,
+    )
+
+    if (!isPasswordValid) {
+      throw new UnprocessableEntityException('Invalid password')
+    }
+
+    return this.generateTokens({ sub: user.id })
   }
 
   private generateTokens(payload: { sub: number }): Token {
