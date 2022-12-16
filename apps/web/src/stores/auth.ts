@@ -25,6 +25,10 @@ export const useAuth = defineStore('auth', () => {
 
   const { signIn } = useSignIn(updateTokens, onError)
   const { signUp } = useSignUp(updateTokens, onError)
+  const signOut = () => {
+    accessToken.value = ''
+    refreshToken.value = ''
+  }
 
   function updateTokens(data: Token) {
     error.clearError()
@@ -37,5 +41,5 @@ export const useAuth = defineStore('auth', () => {
     error.message.value = message
   }
 
-  return { isSignedIn, signUp, signIn, error }
+  return { isSignedIn, signUp, signIn, signOut, error }
 })
