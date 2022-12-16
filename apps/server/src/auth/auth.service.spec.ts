@@ -44,11 +44,11 @@ describe('AuthService', () => {
               }
 
               if (users.some((u) => u.email === user.email)) {
-                throw new Prisma.PrismaClientKnownRequestError(
-                  'Conflict',
-                  'P2002',
-                  '',
-                )
+                throw new Prisma.PrismaClientKnownRequestError('Conflict', {
+                  code: 'P2002',
+                  meta: { target: ['email'] },
+                  clientVersion: '2.0.0',
+                })
               }
 
               users.push(user)
