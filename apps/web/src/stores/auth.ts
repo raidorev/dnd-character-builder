@@ -41,5 +41,13 @@ export const useAuth = defineStore('auth', () => {
     error.message.value = message
   }
 
-  return { isSignedIn, signUp, signIn, signOut, error }
+  return {
+    accessToken,
+    refreshToken,
+    isSignedIn,
+    signUp,
+    signIn,
+    signOut,
+    error,
+  }
 })
