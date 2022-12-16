@@ -1,5 +1,6 @@
 import { ApolloError } from '@apollo/client'
-import { isObject, isArray, isString } from 'lodash-es'
+import { isArray, isString } from 'lodash-es'
+
 import { isRecord } from '../is-record'
 
 export enum ErrorType {

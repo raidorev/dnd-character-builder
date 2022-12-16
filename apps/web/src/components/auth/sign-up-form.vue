@@ -36,7 +36,7 @@ const passwordErrors = createErrors('password')
 const passwordConfirmationErrors = createErrors('passwordConfirmation')
 
 const signUp = async () => {
-  auth.clearError()
+  auth.error.clearError()
 
   const isValid = await $v.value.$validate()
   if (!isValid) {
@@ -49,11 +49,11 @@ const signUp = async () => {
 
 <template>
   <v-form class="mb-3" @submit.prevent="signUp">
-    <v-snackbar :model-value="auth.hasError" color="error">
-      {{ auth.error }}
+    <v-snackbar :model-value="auth.error.hasError" color="error">
+      {{ auth.error.message }}
 
       <template #actions>
-        <v-btn variant="text" @click="auth.clearError">Close</v-btn>
+        <v-btn variant="text" @click="auth.error.clearError">Close</v-btn>
       </template>
     </v-snackbar>
 
