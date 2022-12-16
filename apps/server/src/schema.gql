@@ -34,11 +34,11 @@ type Query {
 }
 
 type Mutation {
-  signUp(input: SignupInput!): Token!
+  signUp(input: SignUpInput!): Token!
   signIn(input: SignInInput!): Token!
 }
 
-input SignupInput {
+input SignUpInput {
   email: String!
   password: String!
 }

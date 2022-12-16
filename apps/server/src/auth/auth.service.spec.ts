@@ -94,7 +94,7 @@ describe('AuthService', () => {
     it('should create a user and return tokens', async () => {
       expect.hasAssertions()
 
-      const tokens = await service.signup({
+      const tokens = await service.signUp({
         email: random.email(),
         password: random.string(),
       })
@@ -110,13 +110,13 @@ describe('AuthService', () => {
       expect.hasAssertions()
 
       const email = random.email()
-      await service.signup({
+      await service.signUp({
         email,
         password: random.string(),
       })
 
       await expect(
-        service.signup({
+        service.signUp({
           email,
           password: random.string(),
         }),
