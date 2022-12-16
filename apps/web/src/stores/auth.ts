@@ -1,6 +1,7 @@
 import { provideApolloClient } from '@vue/apollo-composable'
+import { useLocalStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { reactive, ref } from 'vue'
+import { computed } from 'vue'
 
 import { useSignIn } from '@/composables/auth/sign-in'
 import { useSignUp } from '@/composables/auth/sign-up'
@@ -17,37 +18,24 @@ export const useAuth = defineStore('auth', () => {
 
   const error = useError()
 
-  // TODO
-  const isSignedIn = ref(false)
+  const accessToken = useLocalStorage('accessToken', '')
+  const refreshToken = useLocalStorage('refreshToken', '')
 
-  const tokens = reactive({
-    accessToken: '',
-    refreshToken: '',
-  })
+  const isSignedIn = computed(() => !!accessToken.value)
 
-  const { signIn } = useSignIn(
-    (data) => {
-      error.clearError()
+  const { signIn } = useSignIn(updateTokens, onError)
+  const { signUp } = useSignUp(updateTokens, onError)
 
-      tokens.accessToken = data.accessToken
-      tokens.refreshToken = data.refreshToken
-    },
-    (message) => {
-      error.message.value = message
-    },
-  )
+  function updateTokens(data: Token) {
+    error.clearError()
 
-  const { signUp } = useSignUp(
-    (data) => {
-      error.clearError()
+    accessToken.value = data.accessToken
+    refreshToken.value = data.refreshToken
+  }
 
-      tokens.accessToken = data.accessToken
-      tokens.refreshToken = data.refreshToken
-    },
-    (message) => {
-      error.message.value = message
-    },
-  )
+  function onError(message: string) {
+    error.message.value = message
+  }
 
-  return { isSignedIn, signUp, signIn, error, tokens }
+  return { isSignedIn, signUp, signIn, error }
 })
