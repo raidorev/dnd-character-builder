@@ -7,11 +7,15 @@
     "lint": "eslint . -f pretty"
   },
   "dependencies": {
-    "eslint-config-custom": "workspace:*",
-    "stylelint-config-idiomatic-order": "^9.0.0",
-    "stylelint-config-prettier": "^9.0.4",
-    "stylelint-config-standard-scss": "^6.1.0",
+    "stylelint-config-recess-order": "^4.0.0",
+    "stylelint-config-standard-scss": "^9.0.0",
     "stylelint-config-standard-vue": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*"
+  },
+  "peerDependencies": {
+    "stylelint": "^15.0.0"
   },
   "publishConfig": {
     "access": "public"
