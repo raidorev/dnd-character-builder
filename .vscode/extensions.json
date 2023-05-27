@@ -1,3 +1,11 @@
 {
-  "recommendations": ["lokalise.i18n-ally"]
+  "recommendations": [
+    "lokalise.i18n-ally",
+    "prisma.prisma",
+    "esbenp.prettier-vscode",
+    "vue.vscode-typescript-vue-plugin",
+    "vue.volar",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint"
+  ]
 }
