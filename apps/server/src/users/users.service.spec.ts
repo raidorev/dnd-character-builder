@@ -1,18 +1,16 @@
+import { faker } from '@faker-js/faker'
 import { Test, TestingModule } from '@nestjs/testing'
 import { User } from '@prisma/client'
-import chance from 'chance'
 import { PrismaService } from 'nestjs-prisma'
 
 import { UsersService } from './users.service'
 
-const random = chance()
-
 const users: User[] = Array.from({ length: 10 }).map((_, id) => ({
   id,
-  email: random.email(),
-  password: random.hash(),
-  createdAt: random.date(),
-  updatedAt: random.date(),
+  email: faker.internet.email(),
+  password: faker.internet.password(),
+  createdAt: faker.date.past(),
+  updatedAt: faker.date.recent(),
 }))
 const oneUser = users[0]
 
@@ -67,8 +65,8 @@ describe('UsersService', () => {
       expect.hasAssertions()
 
       const user = await service.createUser({
-        email: random.email(),
-        password: random.hash(),
+        email: faker.internet.email(),
+        password: faker.internet.password(),
       })
       expect(user).toStrictEqual(oneUser)
     })
@@ -80,7 +78,7 @@ describe('UsersService', () => {
 
       const user = await service.updateUser({
         where: { id: 1 },
-        data: { email: random.email() },
+        data: { email: faker.internet.email() },
       })
       expect(user).toStrictEqual(oneUser)
     })

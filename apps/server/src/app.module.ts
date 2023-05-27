@@ -1,9 +1,5 @@
-import { join } from 'node:path'
-
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { GraphQLModule } from '@nestjs/graphql'
 import * as Joi from 'joi'
 import { PrismaModule } from 'nestjs-prisma'
 
@@ -36,10 +32,6 @@ import configuration from './common/config/configuration'
     }),
     PrismaModule.forRoot({
       isGlobal: true,
-    }),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
 
     UsersModule,
