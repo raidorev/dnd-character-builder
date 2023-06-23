@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker'
 import { createMock } from '@golevelup/ts-jest'
 import { Test } from '@nestjs/testing'
+import { User } from '@prisma/client'
 
-import { User } from './models/user.model'
 import { UsersController } from './users.contoller'
 import { UsersService } from './users.service'
 
@@ -12,7 +12,7 @@ const users = Array.from({ length: 10 }).map(
       id: faker.number.int(),
       email: faker.internet.email(),
       password: faker.internet.password(),
-      createAt: faker.date.past(),
+      createdAt: faker.date.past(),
       updatedAt: faker.date.recent(),
     } as User),
 )

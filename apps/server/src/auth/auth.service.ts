@@ -10,9 +10,9 @@ import { Prisma, User } from '@prisma/client'
 import { Config, SecurityConfig } from '@/common/config/configuration.interface'
 import { UsersService } from '@/users/users.service'
 
-import { SignInDto } from './dto/sign-in.input'
-import { SignUpDto } from './dto/sign-up.input'
-import { Token } from './models/token.model'
+import { SignInDto } from './dto/sign-in.dto'
+import { SignUpDto } from './dto/sign-up.dto'
+import { Token } from './interfaces/token.interface'
 import { PasswordService } from './password.service'
 
 @Injectable()
