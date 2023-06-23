@@ -1,13 +1,12 @@
-import { InputType, Field } from '@nestjs/graphql'
+import { ApiProperty } from '@nestjs/swagger'
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator'
 
-@InputType()
-export class SignUpInput {
-  @Field()
+export class SignUpDto {
+  @ApiProperty()
   @IsEmail()
   public email: string
 
-  @Field()
+  @ApiProperty()
   @IsNotEmpty()
   @MinLength(8)
   public password: string

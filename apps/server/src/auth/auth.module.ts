@@ -6,7 +6,7 @@ import { PassportModule } from '@nestjs/passport'
 import { Config, SecurityConfig } from '@/common/config/configuration.interface'
 import { UsersService } from '@/users/users.service'
 
-import { AuthResolver } from './auth.resolver'
+import { AuthController } from './auth.controller'
 import { AuthService } from './auth.service'
 import { JwtStrategy } from './jwt.strategy'
 import { PasswordService } from './password.service'
@@ -28,12 +28,7 @@ import { PasswordService } from './password.service'
       inject: [ConfigService],
     }),
   ],
-  providers: [
-    AuthService,
-    AuthResolver,
-    UsersService,
-    PasswordService,
-    JwtStrategy,
-  ],
+  providers: [AuthService, UsersService, PasswordService, JwtStrategy],
+  controllers: [AuthController],
 })
 export class AuthModule {}

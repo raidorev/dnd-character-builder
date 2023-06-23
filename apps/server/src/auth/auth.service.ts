@@ -10,8 +10,8 @@ import { Prisma, User } from '@prisma/client'
 import { Config, SecurityConfig } from '@/common/config/configuration.interface'
 import { UsersService } from '@/users/users.service'
 
-import { SignInInput } from './dto/sign-in.input'
-import { SignUpInput } from './dto/sign-up.input'
+import { SignInDto } from './dto/sign-in.input'
+import { SignUpDto } from './dto/sign-up.input'
 import { Token } from './models/token.model'
 import { PasswordService } from './password.service'
 
@@ -28,7 +28,7 @@ export class AuthService {
     return this.usersService.user({ id })
   }
 
-  public async signUp(payload: SignUpInput): Promise<Token> {
+  public async signUp(payload: SignUpDto): Promise<Token> {
     const password = await this.passwordService.hashPassword(payload.password)
 
     try {
@@ -50,7 +50,7 @@ export class AuthService {
     }
   }
 
-  public async signIn({ email, password }: SignInInput): Promise<Token> {
+  public async signIn({ email, password }: SignInDto): Promise<Token> {
     const user = await this.usersService.user({ email })
 
     if (!user) {
