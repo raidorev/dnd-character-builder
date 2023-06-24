@@ -10,7 +10,6 @@ const auth = useAuth()
 const state = reactive({
   email: '',
   password: '',
-  passwordConfirmation: '',
 })
 
 const rules = computed(() => ({
@@ -31,8 +30,6 @@ const emailErrors = createErrors('email')
 const passwordErrors = createErrors('password')
 
 const signIn = async () => {
-  auth.error.clearError()
-
   const isValid = await $v.value.$validate()
   if (!isValid) {
     $v.value.$touch()
@@ -43,7 +40,7 @@ const signIn = async () => {
 </script>
 
 <template>
-  <v-form class="mb-3" @submit.prevent="signIn">
+  <v-form class="mb-3" :disabled="auth.isLoading" @submit.prevent="signIn">
     <v-snackbar :model-value="auth.error.hasError" color="error">
       {{ auth.error.message }}
 
@@ -72,7 +69,14 @@ const signIn = async () => {
     />
 
     <div class="text-center">
-      <v-btn class="mb-3" type="submit" color="primary ">Sign In</v-btn>
+      <v-btn
+        class="mb-3"
+        type="submit"
+        color="primary"
+        :loading="auth.isLoading"
+      >
+        Sign In
+      </v-btn>
     </div>
 
     <p class="text-subtitle-1 text-center">

@@ -4,10 +4,21 @@ import { ref } from 'vue'
 import BaseLogo from '@/components/app-logo.vue'
 import SignInForm from '@/components/auth/sign-in-form.vue'
 import SignUpForm from '@/components/auth/sign-up-form.vue'
+import { useAuth } from '@/stores/auth'
+
+const auth = useAuth()
 
 const isSignUp = ref(false)
 
 const toggleSignUp = () => {
+  auth.reset()
+
+  if (isSignUp.value) {
+    auth.abortSignIn()
+  } else {
+    auth.abortSignUp()
+  }
+
   isSignUp.value = !isSignUp.value
 }
 </script>

@@ -1,44 +1,35 @@
-import { useMutation } from '@vue/apollo-composable'
-import { gql } from 'graphql-tag'
-
-import { Token } from '@/stores/auth'
-import { extractErrorMessage } from '@/utils/graphql/error'
+import { api } from '@/plugins/api'
+import { JwtTokens } from '@/stores/auth'
+import { extractClientError } from '@/utils/api/error'
 
 export const useSignUp = (
-  onDone: (data: Token) => void,
+  onDone: (tokens: JwtTokens) => void,
   onError: (message: string) => void,
 ) => {
-  const {
-    mutate: signUp,
-    onError: onSignUpError,
-    onDone: onSignUpDone,
-  } = useMutation<{
-    signUp: Token
-  }>(
-    gql`
-      mutation SignUp($email: String!, $password: String!) {
-        signUp(input: { email: $email, password: $password }) {
-          accessToken
-          refreshToken
-        }
+  const controller = new AbortController()
+
+  const signUp = async (credentials: { email: string; password: string }) => {
+    try {
+      const tokens = await api
+        .url('/auth/sign-up')
+        .post(credentials)
+        .error(400, (error) => {
+          onError(extractClientError(error))
+        })
+        .error(422, (error) => {
+          onError(extractClientError(error))
+        })
+        .json<JwtTokens | undefined>()
+
+      if (!tokens) {
+        return
       }
-    `,
-  )
 
-  onSignUpError((apolloError) => {
-    onError(extractErrorMessage(apolloError))
-  })
-
-  onSignUpDone(({ errors, data }) => {
-    if (errors?.length && !data) {
-      onError(errors[0].message)
-      return
+      onDone(tokens)
+    } catch {
+      onError('Unknown error')
     }
+  }
 
-    if (data) {
-      onDone(data.signUp)
-    }
-  })
-
-  return { signUp }
+  return { signUp, abort: () => controller.abort() }
 }
