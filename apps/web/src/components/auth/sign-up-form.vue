@@ -36,8 +36,6 @@ const passwordErrors = createErrors('password')
 const passwordConfirmationErrors = createErrors('passwordConfirmation')
 
 const signUp = async () => {
-  auth.error.clearError()
-
   const isValid = await $v.value.$validate()
   if (!isValid) {
     $v.value.$touch()
@@ -48,7 +46,7 @@ const signUp = async () => {
 </script>
 
 <template>
-  <v-form class="mb-3" @submit.prevent="signUp">
+  <v-form class="mb-3" :disabled="auth.isLoading" @submit.prevent="signUp">
     <v-snackbar :model-value="auth.error.hasError" color="error">
       {{ auth.error.message }}
 
@@ -86,7 +84,14 @@ const signUp = async () => {
     />
 
     <div class="text-center">
-      <v-btn class="mb-3" type="submit" color="primary ">Sign Up</v-btn>
+      <v-btn
+        class="mb-3"
+        type="submit"
+        color="primary"
+        :loading="auth.isLoading"
+      >
+        Sign Up
+      </v-btn>
     </div>
   </v-form>
 </template>

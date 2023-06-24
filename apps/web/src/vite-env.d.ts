@@ -10,3 +10,7 @@ declare module '*.vue' {
   >
   export default component
 }
+
+interface ImportMetaEnv {
+  VITE_API_URL: string
+}

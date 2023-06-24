@@ -42,8 +42,8 @@ module.exports = {
         pathGroups: [
           {
             pattern: '@/**',
-            group: 'external',
-            position: 'after',
+            group: 'internal',
+            position: 'before',
           },
         ],
         'newlines-between': 'always',
@@ -68,6 +68,12 @@ module.exports = {
   },
 
   overrides: [
+    {
+      files: ['**/*.spec.ts?(x)'],
+      rules: {
+        'sonarjs/no-duplicate-string': 'off',
+      },
+    },
     {
       files: ['**/*.ts?(x)'],
       parser: '@typescript-eslint/parser',
