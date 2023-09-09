@@ -6,9 +6,11 @@ export const useSignIn = (
   onDone: (tokens: JwtTokens) => void,
   onError: (message: string) => void,
 ) => {
-  const controller = new AbortController()
+  let controller: AbortController | undefined
 
   const signIn = async (credentials: { email: string; password: string }) => {
+    controller = new AbortController()
+
     try {
       const tokens = await api
         .signal(controller)
@@ -32,5 +34,5 @@ export const useSignIn = (
     }
   }
 
-  return { signIn, abort: () => controller.abort() }
+  return { signIn, abort: () => controller?.abort() }
 }
